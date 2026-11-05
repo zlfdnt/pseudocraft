@@ -43,6 +43,17 @@ async function go(p,arg,isBack){
   PC.autoSlides(v);PC.fx(v);if(!(p==='bab'&&arg&&String(arg).indexOf(':')>-1))scrollTo({top:0,behavior:'instant'})}
 PC.go=go;
 document.addEventListener('click',e=>{const t=e.target.closest('[data-go]');if(t){e.preventDefault();go(t.dataset.go,t.dataset.arg);return}if(e.target.closest('[data-back]'))PC.back()});
+// bunyi konsisten: fungsi sama = bunyi sama (lihat tabel di panduan)
+document.addEventListener('click',e=>{if(!W.sfx)return;const t=e.target;let n=null;
+ if(t.closest('.cekk .opt,.rv .opt,.secH,.sw,.lp-ctl .ch,#snd'))n=null;
+ else if(t.closest('.opt,.emo button'))n='select';
+ else if(t.closest('.nav button,.toc button'))n='tick';
+ else if(t.closest('.tg-tab,.tab button,.ch,.chs button,.fchips button'))n='blip';
+ else if(t.closest('.flip'))n='flip';
+ else if(t.closest('.btn.coral,.btn.pulse,.rbar .btn,.land .btn.w,.nxt .btn'))n='press';
+ else if(t.closest('.btn,.mini,.cb,[data-go],.dnav a,.bnav a,.rn,.simc'))n='click';
+ if(n)W.sfx(n)},true);
+const sb=$('#snd');if(sb){const paint=()=>{sb.textContent=W.sfxOn()?'🔊':'🔇';sb.setAttribute('aria-label',W.sfxOn()?'Suara menyala':'Suara mati')};paint();sb.onclick=()=>{W.sfxToggle();paint()}}
 // efek: riak pada tombol, muncul saat digulir, miring 3D ringan
 document.addEventListener('pointerdown',e=>{const b=e.target.closest('.btn');if(!b||b.disabled)return;const r=b.getBoundingClientRect(),s=document.createElement('span');s.className='rp';const d=Math.max(r.width,r.height);s.style.cssText=`width:${d}px;height:${d}px;left:${e.clientX-r.left-d/2}px;top:${e.clientY-r.top-d/2}px`;b.appendChild(s);setTimeout(()=>s.remove(),600)});
 let _io;PC.fx=root=>{if(!('IntersectionObserver' in W)){$$('.reveal',root).forEach(x=>x.classList.add('in'));return}if(!_io)_io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');_io.unobserve(e.target)}}),{threshold:.08});$$('.reveal:not(.in)',root).forEach(x=>_io.observe(x));

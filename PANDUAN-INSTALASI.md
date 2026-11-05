@@ -1,4 +1,4 @@
-# Panduan Instalasi Lengkap — PseudoCraft: Petualangan Logika KKA (v3)
+# Panduan Instalasi Lengkap — PseudoCraft: Petualangan Logika KKA (v3.1)
 
 Panduan ini ditulis untuk pengguna yang belum pernah memakai Apps Script maupun GitHub. Ikuti urutannya; jangan ada langkah yang dilompati.
 
@@ -166,7 +166,8 @@ Buka alamat situs, lalu:
 10. **Materi:** buka Bab 1 → klik tab *Urutan / Percabangan / Pengulangan* pada bagian "Tiga struktur kontrol" dan jalankan contohnya; geser demo; jawab *Cek pemahaman kilat*; klik judul bagian untuk menutup/membuka.
 11. **Lanjut dari terakhir:** baca sebagian Bab 2, keluar (klik nama → Keluar), masuk lagi → kartu **"Terakhir kamu kerjakan"** di Beranda mengarah ke Bab 2 bagian terakhir, dan halaman otomatis menggulir ke sana. Coba juga dari perangkat lain.
 12. **Simulasi:** selesaikan simulasi → muncul tombol **Lanjut ke Bab berikutnya / Beranda / Simulasi lain**.
-13. **Asesmen:** setelah *Kumpulkan* wajib mengisi **refleksi** dulu; nilai baru tampil setelahnya, lengkap dengan soal, opsi, dan alasan tiap opsi. Ulangi asesmen: skor resmi tetap yang pertama.
+13. **Peta & suara:** di Beranda ketuk titik peta bab terkunci (harus bergetar + berbunyi peringatan), coba Tantangan Harian, nyalakan/matikan 🔊, dan jalankan **Loop Lab** di Bab 3.
+14. **Asesmen:** setelah *Kumpulkan* wajib mengisi **refleksi** dulu; nilai baru tampil setelahnya, lengkap dengan soal, opsi, dan alasan tiap opsi. Ulangi asesmen: skor resmi tetap yang pertama.
 
 Sebelum dipakai siswa: **nyalakan lagi kunci asesmen**, nonaktifkan atau biarkan akun uji (tidak mengganggu karena tidak dihitung).
 
@@ -308,3 +309,34 @@ Perubahan v3: tampilan baru, materi interaktif, tombol kembali, refleksi wajib, 
 3. `git add .` → `git commit -m "Update v3"` → `git push`, tunggu 1–2 menit, Ctrl+Shift+R.
 
 Progres belajar siswa yang sudah ada tetap ada (persen tersimpan); rincian bagian yang dibaca akan terisi ulang saat siswa membuka bab tersebut.
+
+---
+
+## 11. Pembaruan v3.1 (hanya frontend — `Kode.gs` dan `appsscript.json` TIDAK berubah)
+
+Cukup salin berkas frontend baru ke repo (semua **kecuali** `js/config.js`), lalu `git add .` → `git commit -m "Update v3.1"` → `git push`, tunggu 1–2 menit, Ctrl+Shift+R.
+
+Isi pembaruan:
+- Tombol **Kembali/Beranda** dan daftar isi bagian **tidak lagi ikut turun** saat menggulir (tampil di bagian atas halaman saja). Tombol aksi di bawah layar (Materi / Mulai Simulasi) tetap ada agar mudah lanjut.
+- **Beranda siswa** lebih interaktif: statistik beranimasi, **Peta Petualangan** (ketuk titik untuk melompat ke bab; bab terkunci bergetar), **Tantangan Harian** (1 soal kilat + streak), tips berputar otomatis.
+- **Loop Lab** (Bab 3): diagram alir yang menyala langkah demi langkah, variabel `angka` berubah langsung, pilihan kecepatan, tombol Langkah/Ulangi, dan uji "hapus Kurangi angka" untuk melihat loop tak berhenti. Ditambah **kalender notifikasi 7 hari**.
+- **Tampilan ala Stitch:** bagian materi berwarna bergantian, kartu *Kasus Riil* (variabel input, ambang batas, jalur LULUS/REMIDIAL), blok simulasi bertanda warna (INPUT, KONDISI, AKSI, LAINNYA, PROSES, SELESAI) dan kartu *Status eksekusi*.
+- **Efek suara** (tombol 🔊 di pojok kanan atas untuk menyala/mematikan; pilihan tersimpan di perangkat). Fungsi yang sama selalu berbunyi sama:
+
+| Aksi | Bunyi |
+|---|---|
+| Tombol biasa, menu, kartu | klik pendek |
+| Tombol utama (Kumpulkan, Mulai, Lanjut) | klik ganda naik |
+| Memilih opsi jawaban / emoji | "pilih" naik |
+| Tab, chip, filter | bip tipis |
+| Nomor soal, daftar isi, langkah demo | tik |
+| Buka / tutup bagian | geser naik / turun |
+| Jawaban benar | tiga nada naik |
+| Jawaban salah | dengung rendah |
+| Item muncul (blok, angka loop) | pop, nadanya naik tiap putaran |
+| Selesai (simulasi, loop, bab) | empat nada naik; bab tuntas / lulus: fanfare |
+| Peringatan (pelanggaran, bab terkunci, loop tak berhenti) | dua bip |
+| Membalik kartu juara | desir |
+| Bab terbuka dari peta | nada buka kunci |
+
+Suara dibuat langsung oleh browser (tanpa berkas audio), jadi tidak memperlambat situs. Di HP, suara baru aktif setelah sentuhan pertama (aturan browser).

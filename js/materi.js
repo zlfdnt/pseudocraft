@@ -56,6 +56,7 @@ window.MATERI=[
   {k:'tip',h:'Kunci komputasional',t:'Kondisi dievaluasi lebih dulu. Hasil BENAR atau SALAH-nya yang menentukan blok mana yang dijalankan.'}]},
  {h:'Kasus: lulus atau belum?',ic:'🎓',b:[
   {k:'p',t:'Dalam contoh ini, komputer mengambil keputusan berdasarkan nilai ujian.'},
+  {k:'kasus',t:'Di sekolah, Pak Budi memasukkan nilai ujian siswa ke dalam sistem. Bagaimana komputer menentukan status kelulusan secara otomatis?',in:'nilai_ujian',inx:'Bilangan bulat (integer)',th:'≥ 75',note:'KKM: 75',ya:'Cetak "LULUS"',no:'Cetak "REMIDIAL"'},
   C('Menentukan siswa lulus atau tidak',['Mulai','Masukkan nilai_ujian','Jika nilai_ujian ≥ 75','    Tampilkan "Selamat, kamu lulus!"','Jika tidak','    Tampilkan "Kamu belum lulus. Tetap semangat belajar!"','Selesai']),
   {k:'demo',f:'cabang'},
   {k:'flow',f:'lulus',cap:'Flowchart keputusan kelulusan'}]},
@@ -89,6 +90,7 @@ window.MATERI=[
  {h:'Notifikasi belajar harian',ic:'🔔',b:[
   {k:'p',t:'Seorang siswa ingin sistem pengingat belajar yang mengirim notifikasi "Saatnya belajar!" setiap hari selama 7 hari.'},
   C('Mengulang notifikasi belajar harian',['Mulai','    Set hari = 1','    Selama hari ≤ 7','        Tampilkan "Hari ke-" + hari + ": Saatnya belajar!"','        Tambah hari dengan 1','Selesai']),
+  {k:'demo',f:'notif'},
   {k:'cek',q:'Berapa kali tulisan "Saatnya belajar!" ditampilkan pada program notifikasi 7 hari?',o:['5 kali','7 kali','8 kali'],a:1,e:'hari bernilai 1 sampai 7 memenuhi hari ≤ 7, jadi ada 7 notifikasi; saat hari = 8 pengulangan berhenti.'}]},
  {h:'Awas, jangan sampai tak berhenti!',ic:'⚠️',b:[
   {k:'p',t:'Nilai yang diperiksa pada kondisi <b>harus berubah</b> di dalam loop. Jika baris <code>Kurangi angka sebanyak 1</code> dihapus, angka tetap 5 dan kondisi <code>angka ≥ 1</code> selalu BENAR, sehingga program tidak pernah berhenti.'},
