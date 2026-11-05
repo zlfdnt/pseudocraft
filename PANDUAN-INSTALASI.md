@@ -1,4 +1,4 @@
-# Panduan Instalasi Lengkap — PseudoCraft: Petualangan Logika KKA
+# Panduan Instalasi Lengkap — PseudoCraft: Petualangan Logika KKA (v3)
 
 Panduan ini ditulis untuk pengguna yang belum pernah memakai Apps Script maupun GitHub. Ikuti urutannya; jangan ada langkah yang dilompati.
 
@@ -24,7 +24,8 @@ Dua paket frontend disediakan:
 4. Browser Chrome/Edge/Firefox.
 
 ### Data yang sudah tertanam di aplikasi (tidak perlu diketik ulang)
-- **Materi** 4 bab (Urutan, Percabangan, Pengulangan, Variabel) sesuai buku Anda, termasuk flowchart dan rangkuman.
+- **Materi** 4 bab (Urutan, Percabangan, Pengulangan, Variabel) sesuai buku Anda, termasuk flowchart, demo interaktif, kuis kilat, dan rangkuman 13 butir.
+- **Tujuan pembelajaran resmi** (3 butir) sudah tertanam di `js/materi.js` (`window.TUJUAN`).
 - **Bank soal**: 10 soal formatif + 15 soal sumatif (3 wacana).
 - **Daftar siswa Kelas 8A**: 18 siswa dari `Data_Siswa_Kelas_8A.xlsx`, ditambah 2 akun uji **Contoh** dan **Uji Coba**, serta 1 akun **guru**.
 - Kolom NISN tidak dipakai.
@@ -33,7 +34,6 @@ Dua paket frontend disediakan:
 | Data | Di mana | Keterangan |
 |---|---|---|
 | URL Web App Apps Script (`…/exec`) | `js/config.js` | Didapat di langkah 1.6 |
-| Teks **tujuan pembelajaran resmi** Kemendikdasmen | `js/materi.js` → `window.TUJUAN` | Belum tersedia di dokumen PRD; selama kosong, Beranda menampilkan catatan placeholder |
 | Akun pihak ketiga (orang tua/pengamat) | Aplikasi → Kelas → Tambah akun | Opsional |
 
 ---
@@ -77,6 +77,9 @@ Log berisi sandi awal. Setelah dibagikan ke siswa, hapus riwayat eksekusi (menu 
 > Akses "Anyone" aman: setiap fitur tetap dilindungi login aplikasi dan token sesi.
 
 > **Setiap kali Anda mengubah Kode.gs**, terbitkan versi baru: **Deploy → Manage deployments → ✏ Edit → Version: New version → Deploy**. URL tetap sama.
+
+### 1.7 Mempercepat aplikasi (opsional, disarankan)
+Apps Script yang lama tidak dipakai "tidur" dan terasa lambat pada akses pertama. Dua hal sudah otomatis: halaman memanggil server lebih dulu saat dibuka (saat siswa mengetik sandi), dan data Beranda diambil dalam satu panggilan serta ditampilkan instan dari cache lokal. Untuk hasil terbaik saat jam pelajaran, jalankan sekali fungsi **`pasangPemanasServer`** di editor: server dibangunkan otomatis tiap 5 menit. (Memakai kuota trigger ±5–10 menit/hari; matikan dengan **`matikanPemanasServer`**.)
 
 ---
 
@@ -160,6 +163,10 @@ Buka alamat situs, lalu:
 7. Papan Juara siswa tetap menampilkan teaser (karena akun uji disembunyikan). Untuk melihat papan juara terisi, minta satu siswa nyata mengerjakan atau tandai sementara akun uji sebagai **"Jadikan nyata"** di Kelas.
 8. Coba unduh **Excel** dan **PDF** dari Dashboard.
 9. Buka di HP: pastikan navigasi bawah, kartu, dan asesmen nyaman.
+10. **Materi:** buka Bab 1 → klik tab *Urutan / Percabangan / Pengulangan* pada bagian "Tiga struktur kontrol" dan jalankan contohnya; geser demo; jawab *Cek pemahaman kilat*; klik judul bagian untuk menutup/membuka.
+11. **Lanjut dari terakhir:** baca sebagian Bab 2, keluar (klik nama → Keluar), masuk lagi → kartu **"Terakhir kamu kerjakan"** di Beranda mengarah ke Bab 2 bagian terakhir, dan halaman otomatis menggulir ke sana. Coba juga dari perangkat lain.
+12. **Simulasi:** selesaikan simulasi → muncul tombol **Lanjut ke Bab berikutnya / Beranda / Simulasi lain**.
+13. **Asesmen:** setelah *Kumpulkan* wajib mengisi **refleksi** dulu; nilai baru tampil setelahnya, lengkap dengan soal, opsi, dan alasan tiap opsi. Ulangi asesmen: skor resmi tetap yang pertama.
 
 Sebelum dipakai siswa: **nyalakan lagi kunci asesmen**, nonaktifkan atau biarkan akun uji (tidak mengganggu karena tidak dihitung).
 
@@ -180,6 +187,9 @@ Sebelum dipakai siswa: **nyalakan lagi kunci asesmen**, nonaktifkan atau biarkan
 | Skor resmi | Percobaan pertama; terkunci, tidak pernah diperbarui |
 | **Papan juara** | **Hanya skor resmi percobaan pertama** (formatif + sumatif); akun uji tidak ikut tampil |
 | Toleransi pelanggaran | 3 kali (keluar tab, copy, Print Screen); pelanggaran ke-4 mengunci jawaban dan menampilkan skor akhir |
+| Refleksi | Wajib diisi (keyakinan, bagian tersulit, rencana belajar) **sebelum nilai tampil**; juga saat jawaban terkunci atau waktu habis. Guru melihat refleksi di detail siswa |
+| Lanjut dari terakhir | Bagian materi yang sudah dibaca, status simulasi, dan posisi terakhir tersimpan di server per siswa, sehingga login ulang atau pindah perangkat tetap melanjutkan |
+| Pembahasan | Setelah nilai tampil: seluruh soal lengkap dengan wacana, semua opsi, kunci, jawaban siswa, alasan tiap opsi, dan tautan "Pelajari lagi Bab X" |
 | KKM | 75 |
 Keterbatasan: screenshot lewat aplikasi lain di perangkat tidak dapat dicegah penuh oleh web.
 
@@ -246,11 +256,12 @@ Jika Anda sebelumnya sudah menjalankan versi awal PseudoCraft (yang masih memili
 | Sheet | Isi |
 |---|---|
 | Pengguna | username, nama, nis, jk, kelas, peran, hash, salt, aktif, uji |
-| Wacana, Bank_Soal | Wacana dan soal (kunci & pembahasan, hanya dibaca server) |
+| Wacana, Bank_Soal | Wacana dan soal (kunci, pembahasan, dan `alasan` per opsi; hanya dibaca server) |
 | Jawaban_Siswa | Setiap jawaban per percobaan, status ragu-ragu, waktu |
 | Hasil_Asesmen | Skor tiap percobaan, jumlah pelanggaran, durasi |
 | Skor_Resmi | Skor percobaan pertama — ditulis sekali, tidak diperbarui |
-| Progres_Materi | Persentase dan status tiap bab per siswa |
+| Progres_Materi | Persentase, status, bagian yang dibaca (`dibaca`), status simulasi (`sim`), dan posisi terakhir (`posisi`) tiap bab per siswa |
+| Refleksi | Refleksi siswa sebelum nilai tampil (keyakinan, bagian tersulit, rencana) |
 | Log_Aktivitas | Login, mulai asesmen, bab selesai, unduhan, impor |
 | Log_Pelanggaran | Jenis pelanggaran dan waktunya |
 Rahasia (kunci sesi, ID spreadsheet) tersimpan di **Script Properties**, bukan di sheet atau frontend. **Jangan bagikan akses edit spreadsheet atau proyek Apps Script ke siswa.** Salin cadangan spreadsheet secara berkala (File → Make a copy).
@@ -270,5 +281,30 @@ Rahasia (kunci sesi, ID spreadsheet) tersimpan di **Script Properties**, bukan d
 | Unduh Excel/PDF gagal | Izin Drive belum diberikan / manifest belum ditempel | Tempel `appsscript.json` (1.2), jalankan `setupAppEnvironment` ulang untuk memberi izin, terbitkan versi baru |
 | Asesmen terkunci | Kunci urutan aktif | Selesaikan bab; atau matikan di Kelas (uji coba) |
 | Papan juara kosong | Belum ada skor resmi siswa nyata | Normal; terisi otomatis saat nilai pertama masuk (maks. 2 menit) |
+| Tampilan lama masih muncul / fitur baru tidak ada | Cache browser atau berkas belum terunggah lengkap | Pastikan folder `js/` memuat `visual.js`; tekan Ctrl+Shift+R |
+| "Isi refleksi terlebih dahulu" | Backend lama masih terpasang | Terbitkan versi baru Kode.gs (1.6) |
+| Pembahasan tanpa alasan per opsi | Bank_Soal belum diperbarui | Jalankan `perbaruiBankSoal` sekali (lihat 10) |
+| Progres tidak tersimpan lintas perangkat | Kolom baru belum ada di sheet | Jalankan `migrasiSkema` (lihat 10) |
 | Git: `Password authentication is not supported` | Memakai password akun | Pakai Personal Access Token (2.6) |
 | Git: `remote origin already exists` | Sudah tersambung | `git remote set-url origin https://github.com/USERNAME/pseudocraft.git` |
+
+---
+
+## 10. Upgrade dari versi sebelumnya (v2 → v3)
+
+Perubahan v3: tampilan baru, materi interaktif, tombol kembali, refleksi wajib, pembahasan lengkap, progres tersimpan di server, percepatan. **Data siswa, skor, dan sandi tetap aman.**
+
+**Backend (Apps Script)**
+1. Salin cadangan spreadsheet database (File → Make a copy).
+2. Ganti isi `Code.gs` dengan **Kode.gs** terbaru. Simpan.
+3. Jalankan fungsi **`migrasiSkema`** → menambah kolom `dibaca`, `sim`, `posisi` (Progres_Materi), `alasan` (Bank_Soal), dan sheet **Refleksi**; membuat cadangan otomatis; aman diulang.
+4. Jalankan fungsi **`perbaruiBankSoal`** sekali → memuat `alasan` per opsi ke bank soal. *(Hanya jika Anda belum mengedit soal secara manual di sheet; jika sudah, tambahkan kolom `alasan` secara manual atau minta bantuan.)*
+5. Jalankan **`segarkanCache`**, lalu (opsional) **`pasangPemanasServer`**.
+6. **Deploy → Manage deployments → ✏ Edit → New version → Deploy.** URL `/exec` tidak berubah.
+
+**Frontend (GitHub)**
+1. Ekstrak **pseudocraft-frontend.zip** ke folder sementara.
+2. Salin SEMUA berkas ke folder repo Anda (`index.html`, `css/`, `js/`, termasuk `js/visual.js` yang baru), **kecuali `js/config.js`** (biarkan milik Anda agar URL backend tidak tertimpa).
+3. `git add .` → `git commit -m "Update v3"` → `git push`, tunggu 1–2 menit, Ctrl+Shift+R.
+
+Progres belajar siswa yang sudah ada tetap ada (persen tersimpan); rincian bagian yang dibaca akan terisi ulang saat siswa membuka bab tersebut.

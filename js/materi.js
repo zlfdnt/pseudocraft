@@ -3,7 +3,6 @@
 window.TUJUAN=`1. Peserta didik mampu memahami fungsi pseudocode sebagai perencanaan algoritma serta menggunakan variabel dan struktur kontrol dasar (urutan, percabangan, dan pengulangan) untuk menyelesaikan masalah kontekstual.
 2. Peserta didik mampu mengenal dan menggunakan simbol-simbol standar internasional (ISO 5807) untuk merancang diagram alir (flowchart) secara logis, runtut, dan terstruktur.
 3. Peserta didik mampu menganalisis permasalahan di lingkungan sekitar atau kehidupan sehari-hari dan menuangkannya ke dalam bentuk pseudocode serta flowchart yang valid sebagai dasar pembuatan program komputer.`;
-(function(){var s=document.createElement('style');s.textContent='.tip{white-space:pre-line}';document.head.appendChild(s)})();
 window.TIPS=['Gunakan bahasa yang sederhana dan mudah dipahami.','Fokus pada logika, bukan aturan bahasa pemrograman tertentu.','Gunakan indentasi (jarak ke kanan) untuk menunjukkan percabangan dan pengulangan.','Tulis nama variabel dan tindakan secara jelas.'];
 // ---------- Flowchart (simbol standar ISO 5807) ----------
 (function(){
@@ -30,38 +29,42 @@ window.FLOW={
 // ---------- Isi materi ----------
 const C=(t,l)=>({k:'kode',t:t,l:l});
 window.MATERI=[
-{id:1,t:'Urutan (Sequence)',c:'#2EC4B6',ex:'Menyiapkan segelas susu hangat',ico:'🥛',sl:['🥛','🔥','☕'],sim:'s1',sec:[
+{id:1,t:'Urutan (Sequence)',target:'Memahami pseudocode & struktur urutan',menit:8,c:'#2EC4B6',ex:'Menyiapkan segelas susu hangat',ico:'🥛',sl:['🥛','🔥','☕'],sim:'s1',sec:[
  {h:'Mengapa perlu pseudocode?',ic:'💡',b:[
   {k:'p',t:'Dalam kehidupan sehari-hari kita sering menyelesaikan masalah lewat langkah-langkah tertentu, mulai dari hal sederhana seperti menyiapkan sarapan sampai menyusun rencana belajar untuk ujian. Jika langkah itu disusun runtut dan logis, sebenarnya kamu sudah berpikir seperti seorang programmer.'},
   {k:'p',t:'<b>Pseudocode</b> adalah cara menuliskan algoritma dengan bahasa manusia, tetapi tetap mengikuti struktur dan logika pemrograman. Ia <b>tidak dijalankan</b> komputer. Fungsinya sebagai rancangan sebelum membuat program nyata, supaya ide lebih jelas dan mudah diterjemahkan ke bahasa seperti Python atau Scratch.'},
-  {k:'tip',h:'Tech Talk: Sebelum komputer ada, sudah ada algoritma!',t:'Algoritma pertama dalam sejarah ditulis oleh Ada Lovelace pada tahun 1843, jauh sebelum komputer modern diciptakan. Itulah sebabnya ia disebut programmer pertama di dunia.'}]},
+  {k:'ada'}]},
  {h:'Tiga struktur kontrol',ic:'🧭',b:[
   {k:'p',t:'Pseudocode umumnya tersusun dari tiga jenis struktur kontrol:'},
-  {k:'list',i:['<b>Urutan (Sequence):</b> langkah dilakukan satu per satu, dari atas ke bawah.','<b>Percabangan (Selection):</b> memilih jalur yang berbeda berdasarkan kondisi tertentu.','<b>Pengulangan (Looping/Iteration):</b> langkah diulang selama kondisi tertentu masih terpenuhi.']},
+  {k:'tiga'},
   {k:'p',t:'Kita mulai dari yang paling sederhana: <b>urutan</b>.'}]},
  {h:'Struktur urutan: segelas susu hangat',ic:'🥛',b:[
   {k:'p',t:'Struktur ini hanya berisi langkah-langkah yang dilakukan secara berurutan, tanpa kondisi khusus atau pengulangan.'},
   C('Menyiapkan segelas susu hangat',['Mulai','    Panaskan air','    Tuang susu bubuk ke dalam gelas','    Tuang air panas ke dalam gelas','    Aduk hingga merata','Selesai']),
-  {k:'tip',h:'Urutan itu penting',t:'Jika langkah "Aduk" kamu pindah ke atas "Tuang air panas", susunya belum bercampur. Pada struktur urutan, menukar langkah dapat mengubah hasil.'}]},
+  {k:'demo',f:'urut'},
+  {k:'tip',h:'Urutan itu penting',t:'Jika langkah "Aduk" kamu pindah ke atas "Tuang air panas", susunya belum bercampur. Pada struktur urutan, menukar langkah dapat mengubah hasil.'},
+  {k:'cek',q:'Jika langkah "Aduk hingga merata" ditaruh PALING AWAL, apa hasilnya?',o:['Susu tetap tercampur sempurna','Gelas masih kosong saat diaduk, susu tidak tercampur','Susu menjadi lebih dingin'],a:1,e:'Pada struktur urutan, langkah dikerjakan persis sesuai urutan tertulis, sehingga menukar urutan dapat mengubah hasil.'}]},
  {h:'Diagram alur (flowchart)',ic:'🧩',b:[
   {k:'p',t:'Algoritma yang sama dapat digambarkan sebagai <b>flowchart</b>. Oval menandai awal dan akhir, persegi panjang menunjukkan proses, dan panah menunjukkan arah alur.'},
   {k:'flow',f:'susu',cap:'Flowchart menyiapkan susu hangat'}]},
  {h:'Tips menulis pseudocode yang baik',ic:'✍️',b:[
   {k:'list',i:['Gunakan bahasa yang sederhana dan mudah dipahami.','Fokus pada logika, bukan aturan bahasa pemrograman tertentu.','Gunakan indentasi (jarak ke kanan) untuk menunjukkan percabangan dan pengulangan.','Tulis nama variabel dan tindakan secara jelas.']}]},
  {h:'Cek pemahaman',ic:'🎯',b:[{k:'cek',q:'Struktur kontrol manakah yang hanya berisi langkah berurutan tanpa kondisi atau pengulangan?',o:['Percabangan','Urutan','Pengulangan'],a:1,e:'Urutan (sequence) hanya berisi langkah yang dikerjakan satu per satu dari atas ke bawah.'}]}]},
-{id:2,t:'Percabangan (Selection)',c:'#8E7DFF',ex:'Menentukan kelulusan & memilih menu makan siang',ico:'🔀',sl:['🔀','🍱','🎓'],sim:'s2',sec:[
+{id:2,t:'Percabangan (Selection)',target:'Logika Kelulusan KKM & pilihan menu',menit:10,c:'#8E7DFF',ex:'Menentukan kelulusan & memilih menu makan siang',ico:'🔀',sl:['🔀','🍱','🎓'],sim:'s2',sec:[
  {h:'Percabangan: memilih jalur',ic:'🔀',b:[
   {k:'p',t:'Percabangan membuat program memilih jalur berbeda berdasarkan <b>kondisi</b>. Bentuk dasarnya: <b>Jika</b> kondisi benar, kerjakan A. <b>Jika tidak</b>, kerjakan B. Sebuah kondisi selalu bernilai BENAR (True) atau SALAH (False).'},
   {k:'tip',h:'Kunci komputasional',t:'Kondisi dievaluasi lebih dulu. Hasil BENAR atau SALAH-nya yang menentukan blok mana yang dijalankan.'}]},
  {h:'Kasus: lulus atau belum?',ic:'🎓',b:[
   {k:'p',t:'Dalam contoh ini, komputer mengambil keputusan berdasarkan nilai ujian.'},
   C('Menentukan siswa lulus atau tidak',['Mulai','Masukkan nilai_ujian','Jika nilai_ujian ≥ 75','    Tampilkan "Selamat, kamu lulus!"','Jika tidak','    Tampilkan "Kamu belum lulus. Tetap semangat belajar!"','Selesai']),
+  {k:'demo',f:'cabang'},
   {k:'flow',f:'lulus',cap:'Flowchart keputusan kelulusan'}]},
  {h:'Banyak pilihan: menu makan siang',ic:'🍱',b:[
   {k:'p',t:'Percabangan juga bisa memiliki lebih dari dua kemungkinan. Perhatikan program memilih menu berikut.'},
   C('Memilih menu makan siang',['Mulai','Tampilkan "Pilih menu: 1 = Nasi Goreng, 2 = Mie Ayam"','Masukkan pilihan','Jika pilihan = 1','    Tampilkan "Kamu memilih Nasi Goreng"','Jika pilihan = 2','    Tampilkan "Kamu memilih Mie Ayam"','Jika tidak','    Tampilkan "Pilihan tidak tersedia"','Selesai']),
   {k:'p',t:'Sebagai alternatif, gunakan <b>percabangan bersarang (nested if)</b>: ada Jika di dalam Jika. Setelah memilih menu, program menanyakan pilihan tambahan.'},
-  C('Memilih menu makan siang dengan nested if',['Mulai','Tampilkan "Pilih menu: 1 = Nasi Goreng, 2 = Mie Ayam"','Masukkan pilihan','','Jika pilihan = 1','    Tampilkan "Kamu memilih Nasi Goreng"','    Tampilkan "Ingin level pedas? (1 = Pedas, 2 = Tidak Pedas)"','    Masukkan level','    Jika level = 1','        Tampilkan "Nasi Goreng Pedas akan segera disiapkan."','    Jika level = 2','        Tampilkan "Nasi Goreng Tidak Pedas akan segera disiapkan."','    Jika tidak','        Tampilkan "Pilihan level tidak dikenali."','','Jika pilihan = 2','    Tampilkan "Kamu memilih Mie Ayam"','    Tampilkan "Pakai bakso? (1 = Ya, 2 = Tidak)"','    Masukkan tambahan','    Jika tambahan = 1','        Tampilkan "Mie Ayam dengan Bakso akan segera disiapkan."','    Jika tambahan = 2','        Tampilkan "Mie Ayam tanpa Bakso akan segera disiapkan."','    Jika tidak','        Tampilkan "Pilihan tambahan tidak dikenali."','','Jika tidak','    Tampilkan "Pilihan menu tidak tersedia."','Selesai'])]},
+  C('Memilih menu makan siang dengan nested if',['Mulai','Tampilkan "Pilih menu: 1 = Nasi Goreng, 2 = Mie Ayam"','Masukkan pilihan','','Jika pilihan = 1','    Tampilkan "Kamu memilih Nasi Goreng"','    Tampilkan "Ingin level pedas? (1 = Pedas, 2 = Tidak Pedas)"','    Masukkan level','    Jika level = 1','        Tampilkan "Nasi Goreng Pedas akan segera disiapkan."','    Jika level = 2','        Tampilkan "Nasi Goreng Tidak Pedas akan segera disiapkan."','    Jika tidak','        Tampilkan "Pilihan level tidak dikenali."','','Jika pilihan = 2','    Tampilkan "Kamu memilih Mie Ayam"','    Tampilkan "Pakai bakso? (1 = Ya, 2 = Tidak)"','    Masukkan tambahan','    Jika tambahan = 1','        Tampilkan "Mie Ayam dengan Bakso akan segera disiapkan."','    Jika tambahan = 2','        Tampilkan "Mie Ayam tanpa Bakso akan segera disiapkan."','    Jika tidak','        Tampilkan "Pilihan tambahan tidak dikenali."','','Jika tidak','    Tampilkan "Pilihan menu tidak tersedia."','Selesai']),
+  {k:'cek',q:'Pada program menu makan siang, jika pengguna memasukkan pilihan = 5, apa yang tampil?',o:['Kamu memilih Nasi Goreng','Kamu memilih Mie Ayam','Pilihan tidak tersedia'],a:2,e:'pilihan = 1 dan pilihan = 2 sama-sama SALAH, sehingga cabang Jika tidak dijalankan.'}]},
  {h:'Genap atau ganjil?',ic:'🔢',b:[
   {k:'p',t:'Operator <b>mod</b> memberi sisa hasil bagi. Bilangan habis dibagi 2 (sisa 0) adalah genap, selain itu ganjil.'},
   C('Menentukan angka genap atau ganjil',['MULAI','    Input angka','    Jika angka mod 2 = 0:','        Tampilkan "Genap"','    Jika tidak:','        Tampilkan "Ganjil"','SELESAI']),
@@ -71,35 +74,39 @@ window.MATERI=[
   C('Contoh format pseudocode',['Mulai','    Tanyakan: "Masukkan jenis sampah (organik, anorganik, B3): "','    Jika sampah = "organik"','        Tampilkan: "Buang ke tempat sampah hijau."','    Jika sampah = "anorganik"','        Tampilkan: "Buang ke tempat sampah kuning."','    Jika sampah = "B3"','        Tampilkan: "Buang ke tempat sampah merah."','    Jika tidak dikenali','        Tampilkan: "Jenis sampah tidak dikenali. Silakan coba lagi."','Selesai']),
   {k:'tugas',h:'Diskusikan dengan temanmu',t:'<ol><li>Apakah pseudocode ini bisa menjadi dasar program komputer sederhana?</li><li>Bagaimana cara menambahkan lebih banyak jenis sampah atau fitur ke dalam sistem?</li></ol>'}]},
  {h:'Cek pemahaman',ic:'🎯',b:[{k:'cek',q:'Jika nilai_ujian = 70 dan syarat kelulusan nilai_ujian ≥ 75, apa yang ditampilkan?',o:['Selamat, kamu lulus!','Kamu belum lulus. Tetap semangat belajar!','Tidak ada pesan'],a:1,e:'70 ≥ 75 bernilai SALAH, sehingga cabang Jika tidak yang dijalankan.'}]}]},
-{id:3,t:'Pengulangan (Loop)',c:'#FFD166',ex:'Hitung mundur & notifikasi belajar harian',ico:'🔁',sl:['🔁','⏰','🔔'],sim:'s3',sec:[
+{id:3,t:'Pengulangan (Loop)',target:'Hitung mundur & notifikasi harian',menit:8,c:'#FFB300',ex:'Hitung mundur & notifikasi belajar harian',ico:'🔁',sl:['🔁','⏰','🔔'],sim:'s3',sec:[
  {h:'Pengulangan: mengulang dengan syarat',ic:'🔁',b:[
   {k:'p',t:'Pengulangan (<i>loop</i>) membuat langkah tertentu dikerjakan berulang kali <b>selama kondisi masih terpenuhi</b>. Dengan loop, kita tidak perlu menulis instruksi yang sama berkali-kali.'},
   {k:'tip',h:'Kamus Pintar',t:'Pada pseudocode, kata <b>Selama</b> (while) dipakai untuk mengulang langkah selama kondisinya masih BENAR.'}]},
  {h:'Menghitung mundur dari 5 ke 1',ic:'⏱️',b:[
   {k:'p',t:'Program ini menampilkan angka dari 5 hingga 1 secara berurutan menggunakan perulangan.'},
-  C('Menghitung mundur dari angka 5 ke 1',['Mulai','    Set angka = 5','    Selama angka ≥ 1','        Tampilkan angka','        Kurangi angka sebanyak 1','Selesai'])]},
+  C('Menghitung mundur dari angka 5 ke 1',['Mulai','    Set angka = 5','    Selama angka ≥ 1','        Tampilkan angka','        Kurangi angka sebanyak 1','Selesai']),
+  {k:'demo',f:'loop'}]},
  {h:'Menampilkan angka 1–5',ic:'🔢',b:[
   {k:'p',t:'Dimulai dari i = 1, sistem terus menampilkan i lalu menambahkannya satu per satu selama i ≤ 5. Dalam flowchart, kondisi diperiksa dengan simbol belah ketupat, lalu proses diulang sampai kondisi tidak terpenuhi.'},
   C('Menampilkan angka satu hingga lima',['MULAI','    i = 1','    Selama i ≤ 5:','        Tampilkan i','        i = i + 1','SELESAI']),
   {k:'flow',f:'loop',cap:'Flowchart pengulangan 1 sampai 5'}]},
  {h:'Notifikasi belajar harian',ic:'🔔',b:[
   {k:'p',t:'Seorang siswa ingin sistem pengingat belajar yang mengirim notifikasi "Saatnya belajar!" setiap hari selama 7 hari.'},
-  C('Mengulang notifikasi belajar harian',['Mulai','    Set hari = 1','    Selama hari ≤ 7','        Tampilkan "Hari ke-" + hari + ": Saatnya belajar!"','        Tambah hari dengan 1','Selesai'])]},
+  C('Mengulang notifikasi belajar harian',['Mulai','    Set hari = 1','    Selama hari ≤ 7','        Tampilkan "Hari ke-" + hari + ": Saatnya belajar!"','        Tambah hari dengan 1','Selesai']),
+  {k:'cek',q:'Berapa kali tulisan "Saatnya belajar!" ditampilkan pada program notifikasi 7 hari?',o:['5 kali','7 kali','8 kali'],a:1,e:'hari bernilai 1 sampai 7 memenuhi hari ≤ 7, jadi ada 7 notifikasi; saat hari = 8 pengulangan berhenti.'}]},
  {h:'Awas, jangan sampai tak berhenti!',ic:'⚠️',b:[
   {k:'p',t:'Nilai yang diperiksa pada kondisi <b>harus berubah</b> di dalam loop. Jika baris <code>Kurangi angka sebanyak 1</code> dihapus, angka tetap 5 dan kondisi <code>angka ≥ 1</code> selalu BENAR, sehingga program tidak pernah berhenti.'},
   {k:'tugas',h:'Tantangan: kelipatan 3',t:'Buat pseudocode atau flowchart untuk menampilkan kelipatan 3 dari 3 sampai 30 menggunakan pengulangan.'}]},
  {h:'Cek pemahaman',ic:'🎯',b:[{k:'cek',q:'Apa yang terjadi jika "Kurangi angka sebanyak 1" dihapus dari program hitung mundur?',o:['Program mencetak 5 4 3 2 1','Angka 5 dicetak terus-menerus tanpa berhenti','Program langsung selesai'],a:1,e:'Angka tidak pernah berubah, jadi kondisi selalu BENAR dan loop tidak berakhir.'}]}]},
-{id:4,t:'Variabel',c:'#F2617A',ex:'Menghitung rata-rata nilai pelajaran',ico:'📦',sl:['📦','🧮','📊'],sim:'s4',sec:[
+{id:4,t:'Variabel',target:'Variabel, rata-rata nilai & flowchart',menit:12,c:'#F2617A',ex:'Menghitung rata-rata nilai pelajaran',ico:'📦',sl:['📦','🧮','📊'],sim:'s4',sec:[
  {h:'Mengenal variabel',ic:'📦',b:[
   {k:'p',t:'Variabel adalah <b>penampung data sementara</b> dalam program: bisa berupa angka, teks, atau hasil perhitungan, dan isinya dapat berubah selama program berjalan. Bayangkan variabel seperti kotak yang diberi label. Kamu bisa memasukkan sesuatu, mengambilnya, atau menggantinya dengan isi baru.'},
   {k:'p',t:'Untuk program rata-rata nilai, kamu bisa memakai variabel seperti <code>jumlah_nilai</code>, <code>banyak_siswa</code>, dan <code>rata_rata</code>.'},
   {k:'tip',h:'Kamus Pintar',t:'Variabel punya nama dan isi. Pada <code>nilai = 80</code>, variabel bernama "nilai" menyimpan angka 80.'}]},
  {h:'Memberi nilai (assignment)',ic:'✏️',b:[
   C('Contoh penulisan variabel',['nilai1 = 85','nilai2 = 90','jumlah = nilai1 + nilai2','rata_rata = jumlah / 2']),
+  {k:'demo',f:'var'},
   {k:'p',t:'<code>nilai1</code>, <code>nilai2</code>, <code>jumlah</code>, dan <code>rata_rata</code> adalah variabel. Tanda <code>=</code> memberikan nilai ke variabel, disebut <b>assignment</b>. Variabel membuat program fleksibel karena bisa dipakai untuk banyak data tanpa menulis ulang perintah, dan membuat pseudocode lebih mudah dibaca.'}]},
  {h:'Menghitung rata-rata tiga nilai',ic:'🧮',b:[
   C('Rata-rata tiga nilai pelajaran',['Mulai','    Masukkan nilai_matematika','    Masukkan nilai_bahasa','    Masukkan nilai_ipa','    Jumlah = nilai_matematika + nilai_bahasa + nilai_ipa','    Rata_rata = Jumlah / 3','    Tampilkan Rata_rata','Selesai']),
   {k:'flow',f:'rata',cap:'Flowchart rata-rata tiga nilai'},
+  {k:'cek',q:'Jika nilai_matematika = 60, nilai_bahasa = 70, nilai_ipa = 80, berapa Rata_rata?',o:['60','70','210'],a:1,e:'Jumlah = 210, Rata_rata = 210 / 3 = 70.'},
   {k:'tip',h:'Kamus Pintar',t:'<b>Input</b> adalah data yang dimasukkan ke dalam sistem. <b>Output</b> adalah hasil pemrosesan data, bisa berupa angka, teks, grafik, atau tindakan tertentu.'}]},
  {h:'Flowchart: menghitung luas persegi',ic:'⬛',b:[
   {k:'p',t:'Setelah memahami pseudocode, saatnya memvisualisasikan algoritma sebagai <b>flowchart</b> (diagram alur), alat bantu visual yang menggambarkan urutan langkah dalam suatu proses. Contoh: menerima panjang sisi persegi, menghitung luas dengan rumus sisi × sisi, lalu menampilkan hasilnya. Diagram diawali dan diakhiri simbol <i>start</i> dan <i>end</i>.'},
