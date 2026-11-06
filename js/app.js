@@ -51,7 +51,7 @@ document.addEventListener('click',e=>{if(!W.sfx)return;const t=e.target;let n=nu
  else if(t.closest('.tg-tab,.tab button,.ch,.chs button,.fchips button'))n='blip';
  else if(t.closest('.flip'))n='flip';
  else if(t.closest('.btn.coral,.btn.pulse,.rbar .btn,.land .btn.w,.nxt .btn'))n='press';
- else if(t.closest('.btn,.mini,.cb,[data-go],.dnav a,.bnav a,.rn,.simc'))n='click';
+ else if(t.closest('.btn,.mini,.cb,[data-go],.dnav a,.bnav a,.rn,.pn,.simc'))n='click';
  if(n)W.sfx(n)},true);
 const sb=$('#snd');if(sb){const paint=()=>{sb.textContent=W.sfxOn()?'🔊':'🔇';sb.setAttribute('aria-label',W.sfxOn()?'Suara menyala':'Suara mati')};paint();sb.onclick=()=>{W.sfxToggle();paint()}}
 // efek: riak pada tombol, muncul saat digulir, miring 3D ringan
@@ -72,9 +72,13 @@ function accountModal(){const m=S.me;
 function logout(expired){S.me=null;S.token='';S.boot=null;localStorage.removeItem('pc_t');localStorage.removeItem('pc_m');closeModal();toast(expired?'Sesi berakhir, silakan masuk lagi.':'Sampai jumpa!');go('beranda')}
 PC.loginModal=loginModal;PC.logout=logout;
 // ---------- slideshow ----------
-PC.slides=(arr,fn)=>`<div class="slides">${arr.map((x,i)=>fn(x,i)).join('')}<div class="dots">${arr.map((_,i)=>`<i class="${i?'':'on'}"></i>`).join('')}</div></div>`;
-PC.autoSlides=root=>{$$('.slides',root).forEach((el,k)=>{const s=$$('.s',el),d=$$('.dots i',el);let i=0;if(el._t)clearInterval(el._t);
- el._t=setInterval(()=>{if(!document.body.contains(el))return clearInterval(el._t);s[i].classList.remove('on');d[i].classList.remove('on');i=(i+1)%s.length;s[i].classList.add('on');d[i].classList.add('on')},3200+k*400)})};
+PC.slides=(arr,fn,arrows)=>`<div class="slides">${arr.map((x,i)=>fn(x,i)).join('')}${arrows?'<button class="sl-a prev" aria-label="Sebelumnya">‹</button><button class="sl-a next" aria-label="Berikutnya">›</button>':''}<div class="dots">${arr.map((_,i)=>`<i class="${i?'':'on'}"></i>`).join('')}</div></div>`;
+PC.autoSlides=root=>{$$('.slides',root).forEach((el,k)=>{const s=$$('.s',el),d=$$('.dots i',el);if(el._t)clearInterval(el._t);let i=Math.max(0,s.findIndex(x=>x.classList.contains('on')));
+ const go=n=>{s[i].classList.remove('on');d[i].classList.remove('on');i=(n+s.length)%s.length;s[i].classList.add('on');d[i].classList.add('on')};
+ d.forEach((x,n)=>x.onclick=e=>{e.stopPropagation();go(n);W.sfx&&W.sfx('blip')});
+ const pv=$('.sl-a.prev',el),nx=$('.sl-a.next',el);if(pv)pv.onclick=e=>{e.stopPropagation();go(i-1)};if(nx)nx.onclick=e=>{e.stopPropagation();go(i+1)};
+ let hov=false;el.onmouseenter=()=>hov=true;el.onmouseleave=()=>hov=false;
+ el._t=setInterval(()=>{if(!document.body.contains(el))return clearInterval(el._t);if(!hov)go(i+1)},3800+k*400)})};
 // ---------- kursor lup ----------
 (function(){const l=$('#lens');if(!matchMedia('(hover:hover) and (pointer:fine)').matches)return;
  l.innerHTML=`<svg viewBox="0 0 100 100"><defs><radialGradient id="g" cx="35%" cy="30%"><stop offset="0" stop-color="#fff" stop-opacity=".9"/><stop offset=".4" stop-color="#bff3ee" stop-opacity=".35"/><stop offset="1" stop-color="#2EC4B6" stop-opacity=".18"/></radialGradient><linearGradient id="h" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8a5a3c"/><stop offset="1" stop-color="#4b2e1c"/></linearGradient></defs><rect x="62" y="62" width="14" height="38" rx="7" transform="rotate(-45 69 81)" fill="url(#h)"/><circle cx="38" cy="38" r="28" fill="url(#g)" stroke="#9aa6b2" stroke-width="7"/><circle cx="38" cy="38" r="31.5" fill="none" stroke="#e9eef3" stroke-width="2" opacity=".8"/><ellipse cx="28" cy="25" rx="9" ry="5" fill="#fff" opacity=".8" transform="rotate(-35 28 25)"/><circle cx="30" cy="40" r="5" fill="#fff" stroke="#1E2A4A" stroke-width="1.5"/><circle cx="46" cy="40" r="5" fill="#fff" stroke="#1E2A4A" stroke-width="1.5"/><circle id="p1" cx="30" cy="40" r="2.2" fill="#1E2A4A"/><circle id="p2" cx="46" cy="40" r="2.2" fill="#1E2A4A"/><path d="M29 50q9 7 18 0" fill="none" stroke="#1E2A4A" stroke-width="2" stroke-linecap="round"/></svg>`;

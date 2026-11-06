@@ -1,4 +1,4 @@
-# Panduan Instalasi Lengkap — PseudoCraft: Petualangan Logika KKA (v3.1)
+# Panduan Instalasi Lengkap — PseudoCraft: Petualangan Logika KKA (v3.2)
 
 Panduan ini ditulis untuk pengguna yang belum pernah memakai Apps Script maupun GitHub. Ikuti urutannya; jangan ada langkah yang dilompati.
 
@@ -340,3 +340,12 @@ Isi pembaruan:
 | Bab terbuka dari peta | nada buka kunci |
 
 Suara dibuat langsung oleh browser (tanpa berkas audio), jadi tidak memperlambat situs. Di HP, suara baru aktif setelah sentuhan pertama (aturan browser).
+
+---
+
+## 12. Pembaruan v3.2 (hanya frontend — `Kode.gs` dan `appsscript.json` TIDAK berubah)
+
+Salin berkas frontend baru ke repo (semua **kecuali** `js/config.js`), lalu `git add .` → `git commit -m "Update v3.2"` → `git push`, tunggu 1–2 menit, Ctrl+Shift+R.
+
+- **Perbaikan bagian atas Beranda yang kosong:** kontainer slide pada hero tidak memiliki tinggi sehingga seluruh slide tidak terlihat. Kini hero tampil penuh dengan tiga slide dinamis: sapaan + tombol *Lanjutkan Belajar* dan *Tantangan Harian*; juara kelas saat ini + tombol ke papan juara; dan peta petualangan + tombol ke peta. Hero juga punya panah, titik yang bisa diklik, jeda saat kursor di atasnya, dan ikon yang bergeser mengikuti kursor.
+- **Peta Petualangan baru:** satu jalur berkelok yang menyambung dari Bab 1 sampai Asesmen. Bagian jalur yang sudah dilalui menyala berwarna dan bertambah panjang sesuai progres, ada percikan cahaya yang berjalan di sepanjang jalan, dan astronot berdiri di bab aktif. Ketuk titik bab → panel detail (progres, target, tombol Mulai/Lanjutkan dan Simulasi); ketuk lagi → langsung masuk. Bab terkunci bergetar dan berbunyi peringatan. Di laptop panel detail ada di sebelah peta; di HP di bawah peta, dengan bentuk dan posisi titik yang sama.
